@@ -1,0 +1,23 @@
+{
+  "name": "mozilla-relay-folders",
+  "version": "1.0.0",
+  "description": "An extension that allows you to use folders on the Mozilla Relay page (https://relay.firefox.com/accounts/profile/).",
+  "main": "extension/dist/index.js",
+  "scripts": {
+    "build_ts": "tsc -p ./tsconfig.json",
+    "watch_ts": "tsc -p ./tsconfig.json --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samuel-Risner/mozilla-relay-folders.git"
+  },
+  "author": "Samuel Risner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Samuel-Risner/mozilla-relay-folders/issues"
+  },
+  "homepage": "https://github.com/Samuel-Risner/mozilla-relay-folders#readme",
+  "dependencies": {
+    "typescript": "^5.1.3"
+  }
+}
