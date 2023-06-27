@@ -7,6 +7,7 @@ export default function modEntry(entry: Entry): Entry {
     const btn = document.createElement("button");
     entry.container.appendChild(btn);
     btn.textContent = "⚙";
+    btn.className = "active:animate-spin";
     btn.onclick = () => {
         settingsDiv.hidden = !settingsDiv.hidden;
     }
