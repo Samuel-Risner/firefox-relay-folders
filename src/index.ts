@@ -1,4 +1,5 @@
 import createEntry, { Entry } from "./createEntry";
+import getUList from "./getUList";
 import modEntry from "./modEntry";
 
 type Folder = {
@@ -50,10 +51,6 @@ class Main {
     }
 
     private addFolders(folder: Folder, name: string, alphaParent: HTMLElement) {
-        console.log(folder);
-        console.log(name);
-        console.log(folder.entries);
-
         const parent = document.createElement("li");
         alphaParent.appendChild(parent);
 
@@ -80,6 +77,7 @@ class Main {
 
                     const subContentsList = document.createElement("ul");
                     subContents.appendChild(subContentsList);
+
         for (const e of folder.entries) {
             subContentsList.appendChild(e.element);
         }
@@ -92,43 +90,10 @@ class Main {
 
 }
 
-function getUList(): { children: HTMLLIElement[], parent: HTMLUListElement } | null {
-    const elements: HTMLCollectionOf<HTMLUListElement> = document.getElementsByTagName("ul");
-
-    for (const listEl of elements) {
-        const children = listEl.children;
-        const wantedListElements: HTMLLIElement[] = [];
-
-        for (const child of children) {
-            if (child.tagName !==  "LI") {
-                continue;
-            }
-    
-            if (!child.id.endsWith("mozmail.com")){
-                continue;
-            }
-    
-            if (child.className !== "AliasList_alias-card-wrapper__a_ZUO") {
-                continue;
-            }
-
-            wantedListElements.push(child as HTMLLIElement);
-        }
-        
-        if (wantedListElements.length > 0) {
-            return { children: wantedListElements, parent: listEl };
-        }
-
-    }
-
-    return null;
-}
-
 function main() {
     console.log("foo");
 
     const listElements = getUList();
-    console.log(listElements);
 
     if (listElements === null) {
         return;
