@@ -53,16 +53,19 @@ class Main {
     private addFolders(folder: Folder, name: string, alphaParent: HTMLElement) {
         const parent = document.createElement("li");
         alphaParent.appendChild(parent);
+        parent.className = "pt-6";
 
             const parentContents = document.createElement("div");
             parent.appendChild(parentContents);
 
                 const quickInfo = document.createElement("div");
                 parentContents.appendChild(quickInfo);
+                quickInfo.className = "p-2 flex justify-between";
 
                     const folderName = document.createElement("div");
                     quickInfo.appendChild(folderName);
                     folderName.textContent = name;
+                    // folderName.className = "flex";
 
                     const showContentsButton = document.createElement("button");
                     quickInfo.appendChild(showContentsButton);
@@ -70,13 +73,16 @@ class Main {
                     showContentsButton.onclick = () => {
                         subContents.hidden = !subContents.hidden;
                     }
+                    showContentsButton.className = "order-last w-8";
 
                 const subContents = document.createElement("div");
                 parentContents.appendChild(subContents);
                 subContents.hidden = true;
+                subContents.className = ""
 
                     const subContentsList = document.createElement("ul");
                     subContents.appendChild(subContentsList);
+                    subContentsList.className = "border-l-2 pl-4 ml-4";
 
         for (const e of folder.entries) {
             subContentsList.appendChild(e.element);
