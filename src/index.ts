@@ -72,6 +72,7 @@ class Main {
                     showContentsButton.textContent = "➕";
                     showContentsButton.onclick = () => {
                         subContents.hidden = !subContents.hidden;
+                        showContentsButton.textContent = subContents.hidden? "➕" : "➖";
                     }
                     showContentsButton.className = "order-last w-8";
 
