@@ -9,7 +9,8 @@
     "content_scripts": [
       {
         "matches": ["https://relay.firefox.com/accounts/profile/"],
-        "js": ["dist/index.js"]
+        "js": ["js/dist/bundle.js"],
+        "css": ["css/dist/output.css"]
       }
     ]
   
