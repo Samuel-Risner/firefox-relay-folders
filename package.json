@@ -4,12 +4,11 @@
   "description": "An extension that allows you to use folders on the Mozilla Relay page (https://relay.firefox.com/accounts/profile/).",
   "main": "extension/dist/index.js",
   "scripts": {
-    "build_ts": "tsc -p ./tsconfig.json",
-    "watch_ts": "tsc -p ./tsconfig.json --watch",
-    "build_tw": "tailwindcss -i ./tw/input.css -o ./extension/css/dist/output.css",
+    "build_tw": "tailwindcss -i ./tw/input.css -o ./extension/css/dist/output.css --minify",
     "watch_tw": "tailwindcss -i ./tw/input.css -o ./extension/css/dist/output.css --watch",
     "build_wp": "webpack --config webpack.config.js",
-    "watch_wp": "webpack --config webpack.config.js --watch"
+    "watch_wp": "webpack --config webpack.config.js --watch",
+    "build": "npm run build_tw %% npm run build_wp"
   },
   "repository": {
     "type": "git",
