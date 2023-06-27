@@ -60,12 +60,7 @@ class Main {
 
                 const quickInfo = document.createElement("div");
                 parentContents.appendChild(quickInfo);
-                quickInfo.className = "p-2 flex justify-between";
-
-                    const folderName = document.createElement("div");
-                    quickInfo.appendChild(folderName);
-                    folderName.textContent = name;
-                    // folderName.className = "flex";
+                quickInfo.className = "p-2 flex flex-row";
 
                     const showContentsButton = document.createElement("button");
                     quickInfo.appendChild(showContentsButton);
@@ -74,7 +69,11 @@ class Main {
                         subContents.hidden = !subContents.hidden;
                         showContentsButton.textContent = subContents.hidden? "➕" : "➖";
                     }
-                    showContentsButton.className = "order-last w-8";
+                    showContentsButton.className = "w-6";
+
+                    const folderName = document.createElement("div");
+                    quickInfo.appendChild(folderName);
+                    folderName.textContent = name;
 
                 const subContents = document.createElement("div");
                 parentContents.appendChild(subContents);
@@ -83,7 +82,7 @@ class Main {
 
                     const subContentsList = document.createElement("ul");
                     subContents.appendChild(subContentsList);
-                    subContentsList.className = "border-l-2 pl-4 ml-4";
+                    subContentsList.className = "border-l-2 pl-2 ml-7";
 
         for (const e of folder.entries) {
             subContentsList.appendChild(e.element);
