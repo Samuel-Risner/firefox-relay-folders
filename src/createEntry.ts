@@ -1,6 +1,8 @@
 import settings from "./settings";
 
 export type Entry = {
+    firstDiv: HTMLDivElement;
+    
     inputValue: string;
     inputElement: HTMLInputElement;
 
@@ -40,7 +42,7 @@ function getFolder(value: string): string[] {
 }
 
 export default function createEntry(element: HTMLElement): Entry {
-    const firstDiv = element.children[0];
+    const firstDiv = element.children[0] as HTMLDivElement;
     const smallMaskDiv = firstDiv.children[0] as HTMLElement;
 
     const infoDiv = smallMaskDiv.children[0];
@@ -53,11 +55,12 @@ export default function createEntry(element: HTMLElement): Entry {
     return {
         inputValue: inputElement.value,
         inputElement: inputElement,
-
-        expandArrow: expandArrow,
-
-        container: smallMaskDiv,
         
+        expandArrow: expandArrow,
+        
+        firstDiv: firstDiv,
+        container: smallMaskDiv,
+
         element: element,
 
         tags: getTags(inputElement.value),
