@@ -1,10 +1,10 @@
 {
 
     "manifest_version": 2,
-    "name": "mozilla-relay-folders",
+    "name": "firefox-relay-folders",
     "version": "1.0",
   
-    "description": "An extension that allows you to use folders on the Mozilla Relay page (https://relay.firefox.com/accounts/profile/).",
+    "description": "An extension that allows you to use folders on the Firefox Relay page (https://relay.firefox.com/accounts/profile/).",
   
     "content_scripts": [
       {
