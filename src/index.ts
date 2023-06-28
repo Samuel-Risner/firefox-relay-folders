@@ -1,6 +1,6 @@
 import createEntry, { Entry } from "./createEntry";
 import getUList from "./getUList";
-import modEntry from "./modEntry";
+import createSettings from "./createSettings";
 
 type Folder = {
     entries: Entry[];
@@ -107,11 +107,15 @@ function main() {
 
     const entries: Entry[] = [];
     for (const el of listElements.children) {
-        entries.push(modEntry(createEntry(el)));
+        entries.push(createEntry(el));
     }
 
     const m = new Main(listElements.parent, entries);
 
+    for (const e of entries) {
+        createSettings(e);
+    }
+    
 }
 
 main();

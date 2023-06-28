@@ -52,6 +52,8 @@ export default function createEntry(element: HTMLElement): Entry {
     const inputForm = inputDiv.children[0];
     const inputElement = inputForm.children[0] as HTMLInputElement;
 
+    element.remove();
+
     return {
         inputValue: inputElement.value,
         inputElement: inputElement,
