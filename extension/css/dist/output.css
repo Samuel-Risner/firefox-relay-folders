@@ -556,8 +556,29 @@ video {
   }
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.left-0 {
+  left: 0px;
+}
+
 .m-1 {
   margin: 0.25rem;
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .ml-7 {
@@ -574,6 +595,10 @@ video {
 
 .mr-auto {
   margin-right: auto;
+}
+
+.ml-auto {
+  margin-left: auto;
 }
 
 .flex {
@@ -611,6 +636,14 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.grow {
+  flex-grow: 1;
 }
 
 .flex-row {
