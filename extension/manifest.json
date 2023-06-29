@@ -1,25 +1,25 @@
 {
 
-    "manifest_version": 2,
-    "name": "Relay Folders",
-    "version": "1.0",
-  
-    "description": "An extension that allows you to use folders on the Firefox Relay page (https://relay.firefox.com/accounts/profile/).",
+  "manifest_version": 2,
+  "name": "Relay Folders",
+  "version": "1.0",
 
-    "homepage_url": "https://github.com/Samuel-Risner/firefox-relay-folders",
+  "description": "An extension that allows you to use folders on the Firefox Relay page (https://relay.firefox.com/accounts/profile/).",
 
-    "icons": {
-      "48": "icons/icon.svg",
-      "96": "icons/icon.svg"
-    },
-    
-    "content_scripts": [
-      {
-        "matches": ["https://relay.firefox.com/accounts/profile/"],
-        "js": ["js/dist/bundle.js"],
-        "css": ["css/dist/output.css"]
-      }
-    ]
+  "homepage_url": "https://github.com/Samuel-Risner/firefox-relay-folders",
+
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
   
-  }
+  "content_scripts": [
+    {
+      "matches": ["https://relay.firefox.com/accounts/profile/"],
+      "js": ["js/dist/bundle.js"],
+      "css": ["css/dist/output.css"]
+    }
+  ]
+
+}
   
