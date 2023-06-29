@@ -2,7 +2,8 @@ const settings = {
     tags: {
         start: "(",
         end: ")",
-        separator: ";"
+        separator: ";",
+        colorSeparator: "|"
     },
     folder: {
         start: "[",

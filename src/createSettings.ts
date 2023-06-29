@@ -3,12 +3,9 @@ import { removeElementFromArray } from "./misc";
 import settings from "./settings";
 
 export default function createSettings(entry: Entry): Entry {
-    entry.expandArrow.remove();
-
     const btn = document.createElement("button");
 
     entry.container.appendChild(btn);
-    entry.container.appendChild(entry.expandArrow);
 
     btn.textContent = "⚙";
     btn.className = "active:animate-spin";
@@ -48,7 +45,7 @@ function createSettingsContents(alreadyExistingFolder: string[], alreadyExisting
     }
 
     settingsDiv.appendChild(createInputFields("Folder:", addToFolderPart, settings.folder.separator, alreadyExistingFolder));
-    settingsDiv.appendChild(createInputFields("Tags:", addToTagsPart, settings.tags.separator, alreadyExistingTags));
+    settingsDiv.appendChild(createInputFields(`Tags (add colors by adding a "${settings.tags.colorSeparator}" after the tag and then the color):`, addToTagsPart, settings.tags.separator, alreadyExistingTags));
 
     return settingsDiv;
 

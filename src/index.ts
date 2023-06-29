@@ -1,6 +1,8 @@
+import addExpandArrow from "./addExpandArrow";
+import addTags from "./addTags";
 import createEntry, { Entry } from "./createEntry";
-import getUList from "./getUList";
 import createSettings from "./createSettings";
+import getUList from "./getUList";
 
 type Folder = {
     entries: Entry[];
@@ -113,7 +115,9 @@ function main() {
     const m = new Main(listElements.parent, entries);
 
     for (const e of entries) {
+        addTags(e);
         createSettings(e);
+        addExpandArrow(e);
     }
     
 }

@@ -12,30 +12,46 @@ export type Entry = {
     element: HTMLElement;
 
     tags: string[];
+    tagColors: string[];
     folder: string[];
 }
 
-function getTags(value: string): string[] {
-    if (!value.includes(settings.tags.start)) return [];
+function getColorsAndModTags(tags: string[]): string[] {
+    const colors: string[] = [];
 
+    for (let i = 0; i < tags.length; i++) {
+        const parts = tags[i].split(settings.tags.colorSeparator);
+
+        if (parts.length != 2) {
+            colors.push("");
+            continue;
+        }
+
+        colors.push(parts[1]);
+        tags[i] = parts[0];
+    }
+
+    return colors;
+}
+
+function getTagsAndColors(value: string): { colors: string[], tags: string[] } {
     let parts = value.split(settings.tags.start);
-    if (parts.length !== 2) return [];
+    if (parts.length != 2) return { colors: [], tags: [] };
 
     let parts2 = parts[1].split(settings.tags.end);
-    if (parts2.length !== 2) return [];
+    if (parts2.length != 2) return { colors: [], tags: [] };
 
     const tags = parts2[0].split(settings.tags.separator);
-    return tags;
+    const colors = getColorsAndModTags(tags);
+    return { colors: colors, tags: tags };
 }
 
 function getFolder(value: string): string[] {
-    if (!value.includes(settings.folder.start)) return [];
-
     let parts = value.split(settings.folder.start);
-    if (parts.length !== 2) return [];
+    if (parts.length != 2) return [];
 
     let parts2 = parts[1].split(settings.folder.end);
-    if (parts2.length !== 2) return [];
+    if (parts2.length != 2) return [];
 
     const folder = parts2[0].split(settings.folder.separator);
     return folder;
@@ -52,7 +68,10 @@ export default function createEntry(element: HTMLElement): Entry {
     const inputForm = inputDiv.children[0];
     const inputElement = inputForm.children[0] as HTMLInputElement;
 
+    expandArrow.remove();
     element.remove();
+
+    const tagsAndColors = getTagsAndColors(inputElement.value);
 
     return {
         inputValue: inputElement.value,
@@ -65,7 +84,8 @@ export default function createEntry(element: HTMLElement): Entry {
 
         element: element,
 
-        tags: getTags(inputElement.value),
+        tags: tagsAndColors.tags,
+        tagColors: tagsAndColors.colors,
         folder: getFolder(inputElement.value)
     }
 }
