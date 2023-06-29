@@ -98,14 +98,13 @@ class Main {
 
 }
 
-function main() {
-    console.log("foo");
-
+function main(timeOut: NodeJS.Timeout) {
     const listElements = getUList();
 
     if (listElements === null) {
-        return;
+        return false;
     }
+    clearTimeout(timeOut);
 
     const entries: Entry[] = [];
     for (const el of listElements.children) {
@@ -122,4 +121,4 @@ function main() {
     
 }
 
-main();
+const x = setTimeout(() => { main(x); }, 1000);
