@@ -104,6 +104,7 @@ function main(timeOut: NodeJS.Timeout) {
     if (listElements === null) {
         return false;
     }
+
     clearTimeout(timeOut);
 
     const entries: Entry[] = [];
@@ -121,4 +122,5 @@ function main(timeOut: NodeJS.Timeout) {
     
 }
 
-const x = setTimeout(() => { main(x); }, 1000);
+const x = setInterval(() => { main(x); }, 1000);
+
