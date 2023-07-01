@@ -75,4 +75,4 @@ or
     - ```"watch_wp_<name>": "webpack --config config/<name>/webpack.config.js --watch",```
     - ```"build_tw_<name>": "tailwindcss -c ./config/<name>/tailwind.config.cjs -i ./tw/<name>.css -o ./extension/css/dist/<name>.css --minify",```
     - ```"watch_tw_<name>": "tailwindcss -c ./config/<name>/tailwind.config.cjs -i ./tw/<name>.css -o ./extension/css/dist/<name>.css --watch",```
-    - also add the newly created script to the ```build``` script
+    - also add the newly created scripts to the ```build``` script
