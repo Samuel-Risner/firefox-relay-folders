@@ -1,0 +1,4 @@
+{
+  "include": ["../../src/popup/**/*.ts"],
+  "extends": "../../tsconfig.json"
+}

@@ -1,30 +1,39 @@
 {
-  "name": "firefox-relay-folders",
+  "name": "browser-extension-template",
   "version": "1.0.0",
-  "description": "An extension that allows you to use folders on the firefox Relay page (https://relay.firefox.com/accounts/profile/).",
-  "main": "extension/dist/index.js",
+  "description": "A template for creating a browser extension (Firefox).",
+  "main": "extension/js/dist/bundle.js",
   "scripts": {
-    "build_tw": "tailwindcss -i ./tw/input.css -o ./extension/css/dist/output.css --minify",
-    "watch_tw": "tailwindcss -i ./tw/input.css -o ./extension/css/dist/output.css --watch",
-    "build_wp": "webpack --config webpack.config.js",
-    "watch_wp": "webpack --config webpack.config.js --watch",
-    "build": "npm run build_tw %% npm run build_wp"
+    "build_wp_background": "webpack --config config/background/webpack.config.js",
+    "watch_wp_background": "webpack --config config/background/webpack.config.js --watch",
+
+    "build_wp_content": "webpack --config config/content/webpack.config.js",
+    "watch_wp_content": "webpack --config config/content/webpack.config.js --watch",
+    "build_tw_content": "tailwindcss -c ./config/content/tailwind.config.cjs -i ./tw/content.css -o ./extension/css/dist/content.css --minify",
+    "watch_tw_content": "tailwindcss -c ./config/content/tailwind.config.cjs -i ./tw/content.css -o ./extension/css/dist/content.css --watch",
+
+    "build_wp_popup": "webpack --config config/popup/webpack.config.js",
+    "watch_wp_popup": "webpack --config config/popup/webpack.config.js --watch",
+    "build_tw_popup": "tailwindcss -c ./config/popup/tailwind.config.cjs -i ./tw/popup.css -o ./extension/css/dist/popup.css --minify",
+    "watch_tw_popup": "tailwindcss -c ./config/popup/tailwind.config.cjs -i ./tw/popup.css -o ./extension/css/dist/popup.css --watch",
+
+    "build": "npm run build_tw_content && npm run build_tw_popup && npm run build_wp_background && npm run build_wp_content && npm run build_wp_popup"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Samuel-Risner/firefox-relay-folders.git"
+    "url": "git+https://github.com/Samuel-Risner/browser-extension-template.git"
   },
   "author": "Samuel Risner",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Samuel-Risner/firefox-relay-folders/issues"
+    "url": "https://github.com/Samuel-Risner/browser-extension-template/issues"
   },
-  "homepage": "https://github.com/Samuel-Risner/firefox-relay-folders#readme",
+  "homepage": "https://github.com/Samuel-Risner/browser-extension-template#readme",
   "dependencies": {
     "tailwindcss": "^3.3.2",
-    "ts-loader": "^9.4.3",
-    "typescript": "^5.1.3",
-    "webpack": "^5.88.0",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.1.6",
+    "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4"
   }
 }

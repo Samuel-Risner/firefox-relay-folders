@@ -1,0 +1,4 @@
+{
+  "include": ["../../src/background/**/*.ts"],
+  "extends": "../../tsconfig.json"
+}
