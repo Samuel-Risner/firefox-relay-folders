@@ -18,6 +18,7 @@ To use this template you should reset/set some stuff:
 - change the "description"
 - under "repository" change the "url" to your repos name
 - change "author" to your name
+- change "license" to whatever it is that you are using
 - under "bugs" change "url" to your repos
 - change "homepage" to your repos readme
 
