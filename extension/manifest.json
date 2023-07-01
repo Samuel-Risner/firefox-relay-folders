@@ -1,23 +1,18 @@
 {
 
   "manifest_version": 2,
-  "name": "",
+  "name": "Testing Relay Folders",
   "version": "1.0",
 
-  "description": "",
+  "description": "Allows you to use folders on the Firefox Relay page (https://relay.firefox.com/accounts/profile/).",
 
-  "homepage_url": "",
-
-  "icons": {
-    "48": "",
-    "96": ""
-  },
+  "homepage_url": "https://github.com/Samuel-Risner/firefox-relay-folders",
 
   "content_scripts": [
     {
-      "matches": [""],
-      "js": [""],
-      "css": [""]
+      "matches": ["https://relay.firefox.com/accounts/profile/"],
+      "js": ["js/dist/content.js"],
+      "css": ["css/dist/content.css"]
     }
   ]
 
