@@ -1,3 +1,5 @@
+import { MessageTypes } from "../shared/messageTypes";
+import { ChangeIconMessage } from "../shared/types";
 import { Entry } from "./createEntry";
 import { removeElementFromArray } from "./misc";
 import settings from "./settings";
@@ -108,6 +110,8 @@ function addInputField(container: HTMLDivElement, containerElements: HTMLDivElem
 
     input.oninput = () => {
         addCombinedTextTo(combineInputs());
+        const msg: ChangeIconMessage =  { newIcon: "icons/icon-unsaved-96.png", type: MessageTypes.ChangeIcon };
+        browser.runtime.sendMessage(msg);
     }
 
     removeButton.onclick = () => {

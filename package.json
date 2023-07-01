@@ -6,17 +6,14 @@
   "scripts": {
     "build_wp_background": "webpack --config config/background/webpack.config.js",
     "watch_wp_background": "webpack --config config/background/webpack.config.js --watch",
-
     "build_wp_content": "webpack --config config/content/webpack.config.js",
     "watch_wp_content": "webpack --config config/content/webpack.config.js --watch",
     "build_tw_content": "tailwindcss -c ./config/content/tailwind.config.cjs -i ./tw/content.css -o ./extension/css/dist/content.css --minify",
     "watch_tw_content": "tailwindcss -c ./config/content/tailwind.config.cjs -i ./tw/content.css -o ./extension/css/dist/content.css --watch",
-
     "build_wp_popup": "webpack --config config/popup/webpack.config.js",
     "watch_wp_popup": "webpack --config config/popup/webpack.config.js --watch",
     "build_tw_popup": "tailwindcss -c ./config/popup/tailwind.config.cjs -i ./tw/popup.css -o ./extension/css/dist/popup.css --minify",
     "watch_tw_popup": "tailwindcss -c ./config/popup/tailwind.config.cjs -i ./tw/popup.css -o ./extension/css/dist/popup.css --watch",
-
     "build": "npm run build_tw_content && npm run build_tw_popup && npm run build_wp_background && npm run build_wp_content && npm run build_wp_popup"
   },
   "repository": {
@@ -30,6 +27,7 @@
   },
   "homepage": "https://github.com/Samuel-Risner/firefox-relay-folders#readme",
   "dependencies": {
+    "@types/firefox-webext-browser": "^111.0.1",
     "tailwindcss": "^3.3.2",
     "ts-loader": "^9.4.4",
     "typescript": "^5.1.6",

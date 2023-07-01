@@ -123,4 +123,3 @@ function main(timeOut: NodeJS.Timeout) {
 }
 
 const x = setInterval(() => { main(x); }, 1000);
-
