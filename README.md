@@ -11,8 +11,6 @@ To use this template you should reset/set some stuff:
 - set "name" to your extensions name
 - set "description"
 - set "homepage_url" to your repos readme
-- set the different "icons"
-- under "content_scripts" set "matches"
 
 ## package.json
 
