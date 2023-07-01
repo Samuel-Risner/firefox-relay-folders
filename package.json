@@ -1,8 +1,8 @@
 {
-  "name": "browser-extension-template",
+  "name": "firefox-relay-folders",
   "version": "1.0.0",
-  "description": "A template for creating a browser extension (Firefox).",
-  "main": "extension/js/dist/bundle.js",
+  "description": "A browser extension for Firefox that allows you to use folders on the Firefox Relay page (https://relay.firefox.com/accounts/profile/).",
+  "main": "",
   "scripts": {
     "build_wp_background": "webpack --config config/background/webpack.config.js",
     "watch_wp_background": "webpack --config config/background/webpack.config.js --watch",
@@ -21,14 +21,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Samuel-Risner/browser-extension-template.git"
+    "url": "git+https://github.com/Samuel-Risner/firefox-relay-folders.git"
   },
   "author": "Samuel Risner",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Samuel-Risner/browser-extension-template/issues"
+    "url": "https://github.com/Samuel-Risner/firefox-relay-folders/issues"
   },
-  "homepage": "https://github.com/Samuel-Risner/browser-extension-template#readme",
+  "homepage": "https://github.com/Samuel-Risner/firefox-relay-folders#readme",
   "dependencies": {
     "tailwindcss": "^3.3.2",
     "ts-loader": "^9.4.4",
