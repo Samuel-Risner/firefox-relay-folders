@@ -5,13 +5,9 @@ import { removeElementFromArray } from "./misc";
 import settings from "./settings";
 
 export default function createSettings(entry: Entry): Entry {
-    const btn = document.createElement("button");
-
-    entry.maskOverview.appendChild(btn);
-
-    btn.textContent = "⚙";
-    btn.className = "active:animate-spin";
-    btn.onclick = () => { settingsDiv.hidden = !settingsDiv.hidden; }
+    entry.settingsButton.textContent = "⚙";
+    entry.settingsButton.className = "active:animate-spin";
+    entry.settingsButton.onclick = () => { settingsDiv.hidden = !settingsDiv.hidden; }
 
     const settingsDiv = createSettingsContents(entry.folder, entry.tags);
     entry.firstDiv.appendChild(settingsDiv);

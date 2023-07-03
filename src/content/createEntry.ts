@@ -6,7 +6,8 @@ export type Entry = {
             maskOverview: HTMLDivElement;
                 maskInputAndAliasContainer: HTMLDivElement;
                     inputElement: HTMLInputElement;
-                expandArrow: HTMLButtonElement;
+                settingsButton: HTMLButtonElement;
+                unsavedChangesIndicator: HTMLDivElement;
             maskStats: HTMLDivElement;
     
     inputValue: string;
@@ -64,11 +65,17 @@ export default function createEntry(element: HTMLLIElement): Entry {
                 const inputDiv = maskInputAndAliasContainer.children[0] as HTMLDivElement; //
                     const inputForm = inputDiv.children[0] as HTMLFormElement; //
                         const inputElement = inputForm.children[0] as HTMLInputElement;
-            const expandArrow = maskOverview.children[1] as HTMLButtonElement;
+            const settingsButton = document.createElement("button");
+            const unsavedChangesIndicator = document.createElement("div");
+            const expandArrow = maskOverview.children[1] as HTMLButtonElement; //
         const maskStats = firstDiv.children[1] as HTMLDivElement;
 
     expandArrow.remove();
     element.remove();
+
+    maskInputAndAliasContainer.appendChild(settingsButton);
+    maskInputAndAliasContainer.appendChild(unsavedChangesIndicator);
+    maskInputAndAliasContainer.appendChild(expandArrow);
 
     const tagsAndColors = getTagsAndColors(inputElement.value);
 
@@ -78,7 +85,8 @@ export default function createEntry(element: HTMLLIElement): Entry {
                 maskOverview: maskOverview,
                     maskInputAndAliasContainer: maskInputAndAliasContainer,
                         inputElement: inputElement,
-                    expandArrow: expandArrow,
+                    settingsButton: settingsButton,
+                    unsavedChangesIndicator: unsavedChangesIndicator,
                 maskStats: maskStats,
 
         inputValue: inputElement.value,

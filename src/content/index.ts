@@ -1,4 +1,3 @@
-import addExpandArrow from "./addExpandArrow";
 import addTags from "./addTags";
 import createEntry, { Entry } from "./createEntry";
 import createSettings from "./createSettings";
@@ -25,9 +24,7 @@ function main(interval: NodeJS.Timer) {
         folder.addEntry(e, 0);
         addTags(e);
         createSettings(e);
-        addExpandArrow(e);
     }
-    
 }
 
 const x = setInterval(() => { main(x); }, 1000);
