@@ -2,7 +2,7 @@ import { Entry } from "./createEntry";
 
 export default function addTags(entry: Entry) {
     const tagsContainer = document.createElement("div");
-    entry.container.appendChild(tagsContainer);
+    entry.listElement.appendChild(tagsContainer);
     tagsContainer.className = "flex grow flex-row";
 
     for (let i = 0; i < entry.tags.length; i++) {

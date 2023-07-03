@@ -1,15 +1,15 @@
 import settings from "./settings";
 
 export type Entry = {
-    firstDiv: HTMLDivElement;
+    listElement: HTMLLIElement;
+        firstDiv: HTMLDivElement;
+            maskOverview: HTMLDivElement;
+                maskInputAndAliasContainer: HTMLDivElement;
+                    inputElement: HTMLInputElement;
+                expandArrow: HTMLButtonElement;
+            maskStats: HTMLDivElement;
     
     inputValue: string;
-    inputElement: HTMLInputElement;
-
-    expandArrow: HTMLElement;
-
-    container: HTMLElement;
-    element: HTMLElement;
 
     tags: string[];
     tagColors: string[];
@@ -57,16 +57,15 @@ function getFolder(value: string): string[] {
     return folder;
 }
 
-export default function createEntry(element: HTMLElement): Entry {
+export default function createEntry(element: HTMLLIElement): Entry {
     const firstDiv = element.children[0] as HTMLDivElement;
-    const smallMaskDiv = firstDiv.children[0] as HTMLElement;
-
-    const infoDiv = smallMaskDiv.children[0];
-    const expandArrow = smallMaskDiv.children[1] as HTMLElement;
-
-    const inputDiv = infoDiv.children[0];
-    const inputForm = inputDiv.children[0];
-    const inputElement = inputForm.children[0] as HTMLInputElement;
+        const maskOverview = firstDiv.children[0] as HTMLDivElement;
+            const maskInputAndAliasContainer = maskOverview.children[0] as HTMLDivElement;
+                const inputDiv = maskInputAndAliasContainer.children[0] as HTMLDivElement; //
+                    const inputForm = inputDiv.children[0] as HTMLFormElement; //
+                        const inputElement = inputForm.children[0] as HTMLInputElement;
+            const expandArrow = maskOverview.children[1] as HTMLButtonElement;
+        const maskStats = firstDiv.children[1] as HTMLDivElement;
 
     expandArrow.remove();
     element.remove();
@@ -74,15 +73,15 @@ export default function createEntry(element: HTMLElement): Entry {
     const tagsAndColors = getTagsAndColors(inputElement.value);
 
     return {
-        inputValue: inputElement.value,
-        inputElement: inputElement,
-        
-        expandArrow: expandArrow,
-        
-        firstDiv: firstDiv,
-        container: smallMaskDiv,
+        listElement: element,
+            firstDiv: firstDiv,
+                maskOverview: maskOverview,
+                    maskInputAndAliasContainer: maskInputAndAliasContainer,
+                        inputElement: inputElement,
+                    expandArrow: expandArrow,
+                maskStats: maskStats,
 
-        element: element,
+        inputValue: inputElement.value,
 
         tags: tagsAndColors.tags,
         tagColors: tagsAndColors.colors,

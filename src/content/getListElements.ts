@@ -1,4 +1,4 @@
-export default function getUList(): { children: HTMLLIElement[], parent: HTMLUListElement } | null {
+export default function getListElements(): { children: HTMLLIElement[], parent: HTMLUListElement } | null {
     const elements: HTMLCollectionOf<HTMLUListElement> = document.getElementsByTagName("ul");
 
     for (const listEl of elements) {

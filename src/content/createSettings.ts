@@ -7,7 +7,7 @@ import settings from "./settings";
 export default function createSettings(entry: Entry): Entry {
     const btn = document.createElement("button");
 
-    entry.container.appendChild(btn);
+    entry.maskOverview.appendChild(btn);
 
     btn.textContent = "⚙";
     btn.className = "active:animate-spin";
