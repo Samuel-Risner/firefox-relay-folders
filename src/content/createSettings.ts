@@ -4,10 +4,6 @@ import { Entry } from "./createEntry";
 import { removeElementFromArray } from "./misc";
 import settings from "./settings";
 
-function setUnsaved() {
-
-}
-
 function addInputField(container: HTMLDivElement, containerElements: HTMLDivElement[], inputDataElements: HTMLInputElement[], inputColorElements: HTMLInputElement[], preValueData: string, preValueColor: string, combineInputs: () => void, name: string) {
     name = name.toLowerCase();
     
@@ -130,6 +126,16 @@ function createSettingsContents(entry: Entry): HTMLDivElement {
         const part1 = entry.inputElement.value.split(settings.folder.start)[0];
         const part2 = entry.inputElement.value.split(settings.tags.start)[0];
         toSet.textContent =  part1 > part2? part2 : part1 + folderPart + tagsPart;
+
+        if (entry.inputElement.value === toSet.textContent) {
+            entry.unsavedChangesIndicator.textContent = "🟢";
+            entry.unsaved = false;
+        } else {
+            entry.unsavedChangesIndicator.textContent = "🔴";
+            entry.unsaved = true;
+        }
+
+        entry.folder?.checkSaved();
     }
 
     function addToFolderPart(a: string) {
@@ -144,7 +150,7 @@ function createSettingsContents(entry: Entry): HTMLDivElement {
 
     entry.inputElement.oninput = () => { combineParts(); }
 
-    settingsDiv.appendChild(createInputFields("Folder", addToFolderPart, settings.folder.separator, settings.folder.colorSeparator, entry.folder, entry.folderColors));
+    settingsDiv.appendChild(createInputFields("Folder", addToFolderPart, settings.folder.separator, settings.folder.colorSeparator, entry.folders, entry.folderColors));
     settingsDiv.appendChild(createInputFields("Tags", addToTagsPart, settings.tags.separator, settings.tags.colorSeparator, entry.tags, entry.tagColors));
 
     return settingsDiv;
@@ -152,7 +158,7 @@ function createSettingsContents(entry: Entry): HTMLDivElement {
 
 export default function createSettings(entry: Entry): Entry {
     entry.settingsButton.textContent = "⚙";
-    entry.settingsButton.className = "active:animate-spin";
+    entry.settingsButton.className = "active:animate-spin mr-2";
     entry.settingsButton.onclick = () => { settingsDiv.hidden = !settingsDiv.hidden; }
 
     const settingsDiv = createSettingsContents(entry);

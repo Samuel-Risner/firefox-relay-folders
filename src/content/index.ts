@@ -24,6 +24,7 @@ function main(interval: NodeJS.Timer) {
         folder.addEntry(e, 0);
         addTags(e);
         createSettings(e);
+        e.folder = folder;
     }
 }
 

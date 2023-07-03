@@ -8,39 +8,63 @@ export default class Folder {
     private subFoldersContainer: HTMLUListElement;
     private entriesContainer: HTMLUListElement;
     private container: HTMLDivElement;
+    private unsavedIndicator: HTMLDivElement;
     
-    constructor(protected parentList: HTMLUListElement, name: string, color: string, doCreateFolder: boolean = true) {
+    constructor(protected parentList: HTMLUListElement, name: string, color: string, doCreateFolder: boolean = true, private parent: Folder | null = null) {
         this.subFolders = new Map();
         this.entries = [];
 
         this.subFoldersContainer = document.createElement("ul");
         this.entriesContainer = document.createElement("ul");
         this.container = document.createElement("div");
+        this.unsavedIndicator = document.createElement("div");
 
         if (doCreateFolder) {
             this.createFolder(name, color);
         } else {
             this.parentList.appendChild(this.subFoldersContainer);
             this.parentList.appendChild(this.entriesContainer);
+            this.subFoldersContainer.className = "pb-3";
         }
     }
 
+    checkSaved(): number {
+        let unsaved = 0;
+
+        for (const e of this.entries) {
+            if (e.unsaved) unsaved++;
+        }
+
+        for (const f of this.subFolders.values()) {
+            unsaved += f.checkSaved();
+        }
+
+        if (unsaved === 0) {
+            this.unsavedIndicator.textContent = "🟢";
+            this.unsavedIndicator.title = "No unsaved data";
+        } else {
+            this.unsavedIndicator.textContent = `🔴 ${unsaved}`;
+            this.unsavedIndicator.title = `${unsaved} mask(s) have unsaved data`;
+        }
+
+        return unsaved;
+    }
+
     addEntry(entry: Entry, folderIndex: number = 0) {
-        const subFolderName = entry.folder.at(folderIndex);
+        const subFolderName = entry.folders.at(folderIndex);
 
         if (subFolderName === undefined) {
             this.entries.push(entry);
             this.entriesContainer.appendChild(entry.listElement);
             const color = entry.folderColors.at(-1);
             if ((color !== "") && (color !== undefined)) this.container.style.backgroundColor = color;
-            this.subFoldersContainer.className = "pb-3";
             return;
         }
 
         let subFolder = this.subFolders.get(subFolderName);
 
         if (subFolder === undefined) {
-            subFolder = new Folder(this.subFoldersContainer, subFolderName, entry.folderColors[folderIndex]);
+            subFolder = new Folder(this.subFoldersContainer, subFolderName, entry.folderColors[folderIndex], true, this);
             this.subFolders.set(subFolderName, subFolder);
         }
 
@@ -72,6 +96,11 @@ export default class Folder {
                     const folderName = document.createElement("div");
                     folder.appendChild(folderName);
                     folderName.textContent = name;
+
+                    folder.appendChild(this.unsavedIndicator);
+                    this.unsavedIndicator.className = "ml-2";
+                    this.unsavedIndicator.textContent = "🟢";
+                    this.unsavedIndicator.title = "No unsaved data";
 
                 const contents = document.createElement("div");
                 this.container.appendChild(contents);

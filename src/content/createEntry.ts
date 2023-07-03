@@ -1,3 +1,4 @@
+import Folder from "./folder";
 import settings from "./settings";
 
 export type Entry = {
@@ -10,13 +11,14 @@ export type Entry = {
                 settingsButton: HTMLButtonElement;
                 unsavedChangesIndicator: HTMLDivElement;
             maskStats: HTMLDivElement;
-    
-    inputValue: string;
 
     tags: string[];
     tagColors: string[];
-    folder: string[];
+    folders: string[];
     folderColors: string[];
+
+    folder: Folder | null;
+    unsaved: boolean;
 }
 
 function getDataAndColor(value: string, start: string, end: string, colorSeparator: string, dataSeparator: string): { data: string[], colors: string[] } {
@@ -82,11 +84,12 @@ export default function createEntry(element: HTMLLIElement): Entry {
                     unsavedChangesIndicator: unsavedChangesIndicator,
                 maskStats: maskStats,
 
-        inputValue: inputElement.value,
-
         tags: tagsAndColors.data,
         tagColors: tagsAndColors.colors,
-        folder: foldersAndColors.data,
-        folderColors: foldersAndColors.colors
+        folders: foldersAndColors.data,
+        folderColors: foldersAndColors.colors,
+
+        folder: null,
+        unsaved: false
     }
 }
