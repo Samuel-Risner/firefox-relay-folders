@@ -108,7 +108,7 @@ function createSettingsContents(entry: Entry): HTMLDivElement {
 
     const instructions = document.createElement("span");
     settingsDiv.appendChild(instructions);
-    instructions.textContent = "Please append the following to the masks name: ";
+    instructions.textContent = "Set your masks name to: ";
 
     const toSet = document.createElement("span");
     settingsDiv.appendChild(toSet);
