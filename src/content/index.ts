@@ -5,16 +5,14 @@ import Folder from "./folder";
 import createSettings from "./createSettings";
 import getListElements from "./getListElements";
 
-function main(timeOut: NodeJS.Timeout) {
-    console.log("foo");
-
+function main(interval: NodeJS.Timer) {
     const listElements = getListElements();
 
     if (listElements === null) {
         return false;
     }
 
-    clearTimeout(timeOut);
+    clearTimeout(interval);
 
     const entries: Entry[] = [];
     for (const el of listElements.children) {
