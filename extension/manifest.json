@@ -28,7 +28,8 @@
   ],
 
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
 
   "background": {

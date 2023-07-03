@@ -119,6 +119,11 @@ function createSettingsContents(entry: Entry): HTMLDivElement {
     }
     copyButton.className = "text-lg ml-2";
 
+    const toLongWarning = document.createElement("div");
+    toLongWarning.hidden = true;
+    settingsDiv.appendChild(toLongWarning);
+    toLongWarning.className = "text-red-500 font-semibold";
+
     let folderPart = "";
     let tagsPart = "";
 
@@ -133,6 +138,13 @@ function createSettingsContents(entry: Entry): HTMLDivElement {
         } else {
             entry.unsavedChangesIndicator.textContent = "🔴";
             entry.unsaved = true;
+        }
+
+        if (toSet.textContent.length > 50) {
+            toLongWarning.textContent = `You are ${toSet.textContent.length - 50} character${toSet.textContent.length === 51? "" : "s"} over the 50 characters limit!`;
+            toLongWarning.hidden = false;
+        } else {
+            toLongWarning.hidden = true;
         }
 
         entry.folder?.checkSaved();

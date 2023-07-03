@@ -1,3 +1,5 @@
+import { MessageTypes } from "../shared/messageTypes";
+import { SetUnsavedMessage } from "../shared/types";
 import { Entry } from "./createEntry";
 
 export default class Folder {
@@ -28,7 +30,7 @@ export default class Folder {
         }
     }
 
-    checkSaved(): number {
+    private getSaved(): number {
         let unsaved = 0;
 
         for (const e of this.entries) {
@@ -36,7 +38,7 @@ export default class Folder {
         }
 
         for (const f of this.subFolders.values()) {
-            unsaved += f.checkSaved();
+            unsaved += f.getSaved();
         }
 
         if (unsaved === 0) {
@@ -48,6 +50,12 @@ export default class Folder {
         }
 
         return unsaved;
+    }
+
+    checkSaved() {
+        const unsaved = this.getSaved();
+        const message: SetUnsavedMessage = { type: MessageTypes.SetUnsaved, unsaved: unsaved };
+        browser.runtime.sendMessage(message);
     }
 
     addEntry(entry: Entry, folderIndex: number = 0) {
