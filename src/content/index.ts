@@ -1,8 +1,8 @@
 import addExpandArrow from "./addExpandArrow";
 import addTags from "./addTags";
 import createEntry, { Entry } from "./createEntry";
-import Folder from "./folder";
 import createSettings from "./createSettings";
+import Folder from "./folder";
 import getListElements from "./getListElements";
 
 function main(interval: NodeJS.Timer) {
@@ -12,7 +12,7 @@ function main(interval: NodeJS.Timer) {
         return false;
     }
 
-    clearTimeout(interval);
+    clearInterval(interval);
 
     const entries: Entry[] = [];
     for (const el of listElements.children) {
