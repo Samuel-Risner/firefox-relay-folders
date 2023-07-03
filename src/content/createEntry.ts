@@ -6,6 +6,7 @@ export type Entry = {
             maskOverview: HTMLDivElement;
                 maskInputAndAliasContainer: HTMLDivElement;
                     inputElement: HTMLInputElement;
+                tagContainer: HTMLDivElement;
                 settingsButton: HTMLButtonElement;
                 unsavedChangesIndicator: HTMLDivElement;
             maskStats: HTMLDivElement;
@@ -15,47 +16,35 @@ export type Entry = {
     tags: string[];
     tagColors: string[];
     folder: string[];
+    folderColors: string[];
 }
 
-function getColorsAndModTags(tags: string[]): string[] {
+function getDataAndColor(value: string, start: string, end: string, colorSeparator: string, dataSeparator: string): { data: string[], colors: string[] } {
+    const parts = value.split(start);
+    if (parts.length != 2) return { data: [], colors: [] };
+
+    const parts2 = parts[1].split(end);
+    if (parts2.length != 2) return { data: [], colors: [] };
+
+    const combinedParts = parts2[0].split(dataSeparator);
+
+    const data: string[] = [];
     const colors: string[] = [];
 
-    for (let i = 0; i < tags.length; i++) {
-        const parts = tags[i].split(settings.tags.colorSeparator);
-
-        if (parts.length != 2) {
+    for (const c of combinedParts) {
+        const parts3 = c.split(colorSeparator);
+        if (parts3.length == 1) {
+            data.push(c);
             colors.push("");
+        } else if (parts3.length != 2) {
             continue;
+        } else {
+            data.push(parts3[0]);
+            colors.push(parts3[1]);
         }
-
-        colors.push(parts[1]);
-        tags[i] = parts[0];
     }
 
-    return colors;
-}
-
-function getTagsAndColors(value: string): { colors: string[], tags: string[] } {
-    let parts = value.split(settings.tags.start);
-    if (parts.length != 2) return { colors: [], tags: [] };
-
-    let parts2 = parts[1].split(settings.tags.end);
-    if (parts2.length != 2) return { colors: [], tags: [] };
-
-    const tags = parts2[0].split(settings.tags.separator);
-    const colors = getColorsAndModTags(tags);
-    return { colors: colors, tags: tags };
-}
-
-function getFolder(value: string): string[] {
-    let parts = value.split(settings.folder.start);
-    if (parts.length != 2) return [];
-
-    let parts2 = parts[1].split(settings.folder.end);
-    if (parts2.length != 2) return [];
-
-    const folder = parts2[0].split(settings.folder.separator);
-    return folder;
+    return { colors: colors, data: data };
 }
 
 export default function createEntry(element: HTMLLIElement): Entry {
@@ -65,6 +54,7 @@ export default function createEntry(element: HTMLLIElement): Entry {
                 const inputDiv = maskInputAndAliasContainer.children[0] as HTMLDivElement; //
                     const inputForm = inputDiv.children[0] as HTMLFormElement; //
                         const inputElement = inputForm.children[0] as HTMLInputElement;
+            const tagContainer = document.createElement("div");
             const settingsButton = document.createElement("button");
             const unsavedChangesIndicator = document.createElement("div");
             const expandArrow = maskOverview.children[1] as HTMLButtonElement; //
@@ -73,11 +63,13 @@ export default function createEntry(element: HTMLLIElement): Entry {
     expandArrow.remove();
     element.remove();
 
+    maskInputAndAliasContainer.appendChild(tagContainer);
     maskInputAndAliasContainer.appendChild(settingsButton);
     maskInputAndAliasContainer.appendChild(unsavedChangesIndicator);
     maskInputAndAliasContainer.appendChild(expandArrow);
 
-    const tagsAndColors = getTagsAndColors(inputElement.value);
+    const tagsAndColors = getDataAndColor(inputElement.value, settings.tags.start, settings.tags.end, settings.tags.colorSeparator, settings.tags.separator);
+    const foldersAndColors = getDataAndColor(inputElement.value, settings.folder.start, settings.folder.end, settings.folder.colorSeparator, settings.folder.separator);
 
     return {
         listElement: element,
@@ -85,14 +77,16 @@ export default function createEntry(element: HTMLLIElement): Entry {
                 maskOverview: maskOverview,
                     maskInputAndAliasContainer: maskInputAndAliasContainer,
                         inputElement: inputElement,
+                    tagContainer: tagContainer,
                     settingsButton: settingsButton,
                     unsavedChangesIndicator: unsavedChangesIndicator,
                 maskStats: maskStats,
 
         inputValue: inputElement.value,
 
-        tags: tagsAndColors.tags,
+        tags: tagsAndColors.data,
         tagColors: tagsAndColors.colors,
-        folder: getFolder(inputElement.value)
+        folder: foldersAndColors.data,
+        folderColors: foldersAndColors.colors
     }
 }

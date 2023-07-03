@@ -8,7 +8,8 @@ const settings = {
     folder: {
         start: "[",
         end: "]",
-        separator: ";"
+        separator: ";",
+        colorSeparator: "|"
     }
 }
 

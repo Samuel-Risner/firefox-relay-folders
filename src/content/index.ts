@@ -18,7 +18,7 @@ function main(interval: NodeJS.Timer) {
         entries.push(createEntry(el));
     }
 
-    const folder: Folder = new Folder(listElements.parent, "p", false);
+    const folder: Folder = new Folder(listElements.parent, "", "", false);
 
     for (const e of entries) {
         folder.addEntry(e, 0);
